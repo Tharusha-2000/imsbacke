@@ -14,7 +14,8 @@ const ENV = require('../config.js');
         const decodedToken = await jwt.verify(token, ENV.JWT_SECRET);
 
         req.user = decodedToken;
-
+        console.log("decodedToken");
+        console.log(decodedToken);    
         //res.json(decodedToken);
 
         next()

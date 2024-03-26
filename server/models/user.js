@@ -22,28 +22,19 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
-      //mustbe unique
+      
     },
 
-   // hashedPassword: {
-    //  type: String,
-    //  required: false,
-    //},
     password: {
       type: String,
       required: true,
     },
-    //username: {
-     // type: String,
-    //  required: false,
-   // }
-
     
    },
   );
-  // userSchema.pre("save", async function () {
-   //   this.hashedPassword = await bcrypt.hash(this.password, 12);
-    // });
+   userSchema.pre("save", async function () {
+     this.password = await bcrypt.hash(this.password, 12);
+     });
 
 
 const userModel = mongoose.model("users", userSchema);
